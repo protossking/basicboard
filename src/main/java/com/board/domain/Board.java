@@ -1,9 +1,12 @@
 package com.board.domain;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
+import java.util.List;
 
 @NoArgsConstructor
 @Getter
@@ -24,7 +27,25 @@ public class Board extends BaseTimeEntity{
     private String content;
 
     @ManyToOne
-    @JoinColumn(name = "id")
+    @JoinColumn
     private Member member;
+
+
+    @ColumnDefault("0")
+    private int count;
+
+    @Builder
+    public Board(String title, String content, Member member) {
+        this.title = title;
+        this.content = content;
+        this.member = member;
+    }
+
+    public void update(String title, String content) {
+        this.title = title;
+        this.content = content;
+    }
+
+
 
 }
