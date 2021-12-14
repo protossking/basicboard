@@ -27,10 +27,11 @@ public class MemberSaveRequestDto {
 
     public Member toEntity() {
         return Member.builder()
-                .id(id)
-                .name(name)
-                .password(password)
-                .email(email).build();
+                .memberId(id)
+                .memberName(name)
+                .memberPassword(password)
+                .memberEmail(email)
+                .build();
 
 
     }

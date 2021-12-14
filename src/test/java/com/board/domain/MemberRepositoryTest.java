@@ -1,7 +1,6 @@
 package com.board.domain;
 
 
-import org.assertj.core.api.Assertions;
 import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -37,10 +36,10 @@ public class MemberRepositoryTest {
                 .password(password)
                 .email(email)
                 .build());
-        assertThat(saveMember.getId()).isEqualTo(id);
-        assertThat(saveMember.getPassword()).isEqualTo(password);
-        assertThat(saveMember.getName()).isEqualTo(name);
-        assertThat(saveMember.getEmail()).isEqualTo(email);
+        assertThat(saveMember.getMemberId()).isEqualTo(id);
+        assertThat(saveMember.getMemberPassword()).isEqualTo(password);
+        assertThat(saveMember.getMemberName()).isEqualTo(name);
+        assertThat(saveMember.getMemberEmail()).isEqualTo(email);
 
 
     }
@@ -70,10 +69,10 @@ public class MemberRepositoryTest {
 
         //t
         Member member = list.get(0);
-        assertThat(member.getId()).isEqualTo(id);
-        assertThat(member.getName()).isEqualTo(name);
-        assertThat(member.getPassword()).isEqualTo(password);
-        assertThat(member.getEmail()).isEqualTo(email);
+        assertThat(member.getMemberId()).isEqualTo(id);
+        assertThat(member.getMemberName()).isEqualTo(name);
+        assertThat(member.getMemberPassword()).isEqualTo(password);
+        assertThat(member.getMemberEmail()).isEqualTo(email);
 
     }
 

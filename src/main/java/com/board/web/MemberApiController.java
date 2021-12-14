@@ -14,7 +14,7 @@ import java.util.List;
 @Api("Member Controller API V1")
 @RequiredArgsConstructor
 @RestController
-public class MemberController {
+public class MemberApiController {
 
     private final MemberService service;
 

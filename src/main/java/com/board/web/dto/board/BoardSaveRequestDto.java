@@ -6,9 +6,11 @@ import com.board.domain.Member;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Getter
 @NoArgsConstructor
+@Setter
 public class BoardSaveRequestDto {
 
     private String title;
@@ -26,9 +28,9 @@ public class BoardSaveRequestDto {
     public Board toEntity() {
 
         return Board.builder()
-                .title(title)
-                .content(content)
+                .boardTitle(title)
                 .member(member)
+                .boardContent(content)
                 .build();
     }
 

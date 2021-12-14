@@ -10,8 +10,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
 
-import static org.junit.Assert.*;
-
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class BoardRepositoryTest {
@@ -50,9 +48,9 @@ public class BoardRepositoryTest {
         List<Board> list = boardRepository.findAll();
 
         Board board = list.get(0);
-        Assertions.assertThat(board.getTitle()).isEqualTo(title);
-        Assertions.assertThat("mname").isEqualTo(member.getName());
-        Assertions.assertThat(board.getContent()).isEqualTo(content);
+        Assertions.assertThat(board.getBoardTitle()).isEqualTo(title);
+        Assertions.assertThat("mname").isEqualTo(member.getMemberName());
+        Assertions.assertThat(board.getBoardContent()).isEqualTo(content);
     }
 
 }

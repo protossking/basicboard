@@ -17,35 +17,36 @@ public class Member {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long no;
+    @Column(name = "member_no")
+    private Long memberNo;
 
-    @Column(length = 20, nullable = false)
-    private String id;
+    @Column(length = 20, nullable = false, name = "member_id")
+    private String memberId;
 
-    @Column(length = 20, nullable = false)
-    private String name;
+    @Column(length = 20, nullable = false, name = "member_name")
+    private String memberName;
 
-    @Column(length = 20, nullable = false)
-    private String password;
+    @Column(length = 20, nullable = false, name = "member_password")
+    private String memberPassword;
 
-    @Column(length = 30, nullable = true)
-    private String email;
+    @Column(length = 30, nullable = true, name = "member_email")
+    private String memberEmail;
 
     @Builder
-    public Member(String id, String name, String password, String email) {
-        this.id = id;
-        this.name = name;
-        this.password = password;
-        this.email = email;
+    public Member(String memberId, String memberName, String memberPassword, String memberEmail) {
+        this.memberId = memberId;
+        this.memberName = memberName;
+        this.memberPassword = memberPassword;
+        this.memberEmail = memberEmail;
     }
 
-    @OneToMany(mappedBy = "member")
-    private List<Board> boardList = new ArrayList<>();
+//    @OneToMany(mappedBy = "member")
+//    private List<Board> boardList = new ArrayList<>();
 
 
     public void update(String password, String email) {
-        this.password = password;
-        this.email = email;
+        this.memberPassword = password;
+        this.memberEmail = email;
     }
 
 }

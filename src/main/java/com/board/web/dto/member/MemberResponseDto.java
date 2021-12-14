@@ -14,9 +14,9 @@ public class MemberResponseDto {
     private String email;
 
     public MemberResponseDto (Member entity) {
-        this.id = entity.getId();
-        this.name = entity.getName();
-        this.password = entity.getPassword();
-        this.email = entity.getEmail();
+        this.id = entity.getMemberId();
+        this.name = entity.getMemberName();
+        this.password = entity.getMemberPassword();
+        this.email = entity.getMemberEmail();
     }
 }

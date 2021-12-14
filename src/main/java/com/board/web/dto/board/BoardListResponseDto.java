@@ -1,8 +1,8 @@
 package com.board.web.dto.board;
 
 import com.board.domain.Board;
+import com.board.domain.Member;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
@@ -14,11 +14,13 @@ public class BoardListResponseDto {
     private String title;
     private String content;
     private LocalDateTime modifiedDate;
+    private String memberId;
 
     public BoardListResponseDto(Board entity) {
-        this.no = entity.getNo();
-        this.title = entity.getTitle();
-        this.content = entity.getContent();
+        this.no = entity.getBoardId();
+        this.title = entity.getBoardTitle();
+        this.content = entity.getBoardContent();
         this.modifiedDate = entity.getModifiedDate();
+        this.memberId = entity.getMember().getMemberId();
     }
 }

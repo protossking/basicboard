@@ -6,7 +6,6 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
-import java.util.List;
 
 @NoArgsConstructor
 @Getter
@@ -16,34 +15,35 @@ public class Board extends BaseTimeEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long no;
+    @Column(name = "board_id")
+    private Long boardId;
 
 
-    @Column(length = 250, nullable = false)
-    private String title;
+    @Column(length = 250, nullable = false, name = "board_title")
+    private String boardTitle;
 
-
-    @Column(columnDefinition = "TEXT", nullable = false)
-    private String content;
+    @Column(columnDefinition = "TEXT", nullable = false, name = "board_content")
+    private String boardContent;
 
     @ManyToOne
-    @JoinColumn
+    @JoinColumn(name = "member_id")
     private Member member;
 
 
     @ColumnDefault("0")
-    private int count;
+    @Column(name = "board_count")
+    private int boardCount;
 
     @Builder
-    public Board(String title, String content, Member member) {
-        this.title = title;
-        this.content = content;
+    public Board(String boardTitle, String boardContent, Member member) {
+        this.boardTitle = boardTitle;
+        this.boardContent = boardContent;
         this.member = member;
     }
 
     public void update(String title, String content) {
-        this.title = title;
-        this.content = content;
+        this.boardTitle = title;
+        this.boardContent = content;
     }
 
 

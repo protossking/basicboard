@@ -23,7 +23,7 @@ public class MemberService {
 
     @Transactional
     public Long save (MemberSaveRequestDto requestDto) {
-        return repository.save(requestDto.toEntity()).getNo();
+        return repository.save(requestDto.toEntity()).getMemberNo();
     }
 
     @Transactional
