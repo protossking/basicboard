@@ -25,11 +25,11 @@ public class MemberSaveRequestDto {
         this.email = email;
     }
 
-    public Member toEntity() {
+    public Member toEntity(String encodedPassword) {
         return Member.builder()
                 .memberId(id)
                 .memberName(name)
-                .memberPassword(password)
+                .memberPassword(encodedPassword)
                 .memberEmail(email)
                 .build();
 
