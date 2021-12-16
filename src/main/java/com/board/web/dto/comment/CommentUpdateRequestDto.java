@@ -13,15 +13,13 @@ import lombok.Setter;
 public class CommentUpdateRequestDto {
 
     private String commentContent;
-    private Member member;
-    private Board board;
+
 
 
     @Builder
-    public CommentUpdateRequestDto(String commentContent, Member member, Board board) {
+    public CommentUpdateRequestDto(String commentContent) {
         this.commentContent = commentContent;
-        this.member = member;
-        this.board = board;
+
     }
 
 }

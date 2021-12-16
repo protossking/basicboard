@@ -35,8 +35,15 @@ public class CommentService {
 
     }
 
-//    public Long modify(CommentUpdateRequestDto dto, Long boardNo, Long commentNo, String memberId) {
-//        commentRepository.modify(dto.getCommentContent(), boardNo, memberId)
+//    public Long modify(CommentUpdateRequestDto dto, Long commentNo, String memberId, Long boardNo) {
+//
+//        Member member = memberRepository.findByMemberId(memberId);
+//        Optional<Comment> comment = commentRepository.findById(commentNo);
+//        Optional<Board> board = boardRepository.findById(boardNo);
+//
+//        if(member.getMemberId().equals(memberId)) {
+//
+//        }
 //
 //
 //    }
