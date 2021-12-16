@@ -18,6 +18,7 @@ import javax.servlet.http.HttpSession;
 
 @RequiredArgsConstructor
 @RestController
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class IndexController {
 
     private final MemberService memberService;
