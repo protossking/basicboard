@@ -25,21 +25,21 @@ public class MemberRepositoryTest {
     }
     @Test
     public void 회원_저장() {
-        String id = "a1";
-        String name = "y";
-        String password = "d";
-        String email = "@";
-
-        Member saveMember = repository.save(Member.builder()
-                .id(id)
-                .name(name)
-                .password(password)
-                .email(email)
-                .build());
-        assertThat(saveMember.getMemberId()).isEqualTo(id);
-        assertThat(saveMember.getMemberPassword()).isEqualTo(password);
-        assertThat(saveMember.getMemberName()).isEqualTo(name);
-        assertThat(saveMember.getMemberEmail()).isEqualTo(email);
+//        String id = "a1";
+//        String name = "y";
+//        String password = "d";
+//        String email = "@";
+//
+//        Member saveMember = repository.save(Member.builder()
+//                .id(id)
+//                .name(name)
+//                .password(password)
+//                .email(email)
+//                .build());
+//        assertThat(saveMember.getMemberId()).isEqualTo(id);
+//        assertThat(saveMember.getMemberPassword()).isEqualTo(password);
+//        assertThat(saveMember.getMemberName()).isEqualTo(name);
+//        assertThat(saveMember.getMemberEmail()).isEqualTo(email);
 
 
     }
@@ -48,31 +48,31 @@ public class MemberRepositoryTest {
     @Test
     public void 회원_저장_불러오기 () {
         //g
-        String id = "a1";
-        String name = "y";
-        String password = "d";
-        String email="@";
-
-
-
-        repository.save(Member.builder()
-                .id(id)
-                .name(name)
-                .password(password)
-                .email(email)
-                .build());
-
-        //w
-        List<Member> list = repository.findAll();
-
-
-
-        //t
-        Member member = list.get(0);
-        assertThat(member.getMemberId()).isEqualTo(id);
-        assertThat(member.getMemberName()).isEqualTo(name);
-        assertThat(member.getMemberPassword()).isEqualTo(password);
-        assertThat(member.getMemberEmail()).isEqualTo(email);
+//        String id = "a1";
+//        String name = "y";
+//        String password = "d";
+//        String email="@";
+//
+//
+//
+//        repository.save(Member.builder()
+//                .id(id)
+//                .name(name)
+//                .password(password)
+//                .email(email)
+//                .build());
+//
+//        //w
+//        List<Member> list = repository.findAll();
+//
+//
+//
+//        //t
+//        Member member = list.get(0);
+//        assertThat(member.getMemberId()).isEqualTo(id);
+//        assertThat(member.getMemberName()).isEqualTo(name);
+//        assertThat(member.getMemberPassword()).isEqualTo(password);
+//        assertThat(member.getMemberEmail()).isEqualTo(email);
 
     }
 

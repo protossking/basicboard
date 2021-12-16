@@ -24,6 +24,7 @@ public class BoardDetailResponseDto {
 
 
 
+
     public BoardDetailResponseDto (Board board) {
         this.memberId = board.getMember().getMemberId();
         this.boardNo = board.getBoardId();

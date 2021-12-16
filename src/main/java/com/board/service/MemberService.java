@@ -33,14 +33,14 @@ public class MemberService {
 //        log.info("{encodedPassword}",encodedPassword);
 //        log.info("{encodedPassword}",encodedPassword.length());
         System.out.println("encodedPassword" + encodedPassword);
-        return repository.save(requestDto.toEntity(encodedPassword)).getMemberNo();
 
+        return repository.save(requestDto.toEntity(encodedPassword)).getMemberNo();
     }
+
 
     @Transactional
     public Long update(Long no, MemberUpdateRequestDto dto) {
         Member member = repository.findById(no).orElseThrow(() -> new IllegalArgumentException("해당 회원이 없습니다 " + no));
-
         member.update(dto.getPassword(), dto.getEmail());
 
         return no;

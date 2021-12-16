@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @NoArgsConstructor
 @Getter
@@ -33,6 +35,11 @@ public class Board extends BaseTimeEntity{
     @ColumnDefault("0")
     @Column(name = "board_count")
     private int boardCount;
+
+
+//    @OneToMany(mappedBy = "board", cascade = CascadeType.REMOVE)
+//    List<Comment> commentList = new ArrayList<>();
+
 
     @Builder
     public Board(String boardTitle, String boardContent, Member member) {

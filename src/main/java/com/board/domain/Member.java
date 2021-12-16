@@ -40,7 +40,7 @@ public class Member {
         this.memberEmail = memberEmail;
     }
 
-//    @OneToMany(mappedBy = "member")
+//    @OneToMany(mappedBy = "member", cascade = CascadeType.REMOVE)
 //    private List<Board> boardList = new ArrayList<>();
 
 

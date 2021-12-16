@@ -36,11 +36,11 @@ public class BoardService {
 
     @Transactional
     public Long write(BoardSaveRequestDto dto, String memberId) {
+
         Member findMember = memberRepository.findByMemberId(memberId);
         dto.setMember(findMember);
         Board saveBoard = boardRepository.save(dto.toEntity());
         return saveBoard.getBoardId();
-
     }
 
     @Transactional

@@ -32,7 +32,7 @@ public class IndexController {
         if(loginMember != null) {
 
             HttpSession session = request.getSession();
-            session.setAttribute("Login Member", loginMember);
+            session.setAttribute("LOGINMEMBER", loginMember);
 
             return new MemberResponseDto(loginMember);
         }

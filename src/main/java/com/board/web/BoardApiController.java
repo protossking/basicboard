@@ -26,6 +26,8 @@ public class BoardApiController {
 
 
     @GetMapping("/api/v1/boards")
+
+    @ApiOperation(value = "게시판 목록", notes = "게시판 전체 목록을 보여준다 ")
     public List<BoardListResponseDto> listAll() {
         List<BoardListResponseDto> all = service.findAll();
 
@@ -40,12 +42,14 @@ public class BoardApiController {
     }
 
     @GetMapping("/api/v1/board/{boardNo}")
+    @ApiOperation(value = "게시판 상세보기 ", notes = "해당 게시판 숫자 보여줌 ")
     public ResponseEntity getBoardDetail(@PathVariable Long boardNo) {
         BoardDetailResponseDto board = service.getBoard(boardNo);
         return new ResponseEntity(board, HttpStatus.OK);
     }
 
     @PutMapping("/api/v1/board/{boardNo}")
+    @ApiOperation(value = "게시판 수정", notes = "해당 게시판을 수정한다. ")
     public ResponseEntity modifiedBoard(@PathVariable Long boardNo, BoardUpdateRequestDto dto, String memberId) {
 
 
@@ -54,6 +58,7 @@ public class BoardApiController {
     }
 
     @DeleteMapping("/api/v1/board/{boardNo}")
+    @ApiOperation(value = "게시판 삭제", notes = "해당 게시글을 삭제한다 ")
     public ResponseEntity deleteBoard(@PathVariable Long boardNo, String memberId) {
         service.deleteBoard(boardNo, memberId);
 
