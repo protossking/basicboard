@@ -32,19 +32,27 @@ public class IndexController {
 
         if(loginMember != null) {
 
-            HttpSession session = request.getSession();
+            HttpSession session = request.getSession(true);
             session.setAttribute("LOGINMEMBER", loginMember);
+            System.out.println("-----------------------");
+            Member loginmember =(Member)session.getAttribute("LOGINMEMBER");
 
+            System.out.println(loginmember.getMemberId());
+            System.out.println(session.getAttribute("LOGINMEMBER"));
             return new MemberResponseDto(loginMember);
         }
         return null;
     }
 
-    @PostMapping("/logout")
+    @PostMapping("/doLogout")
     public ResponseEntity logout(HttpServletRequest request) {
         HttpSession session = request.getSession(false);
         if(session != null) {
+            System.out.println("세션날림");
             session.invalidate();
+        }
+        if(!request.isRequestedSessionIdValid()) {
+            System.out.println("세션이 무효화 상태임");
         }
 
         return new ResponseEntity(HttpStatus.OK);
