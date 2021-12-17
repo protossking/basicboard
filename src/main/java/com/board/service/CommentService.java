@@ -20,13 +20,13 @@ public class CommentService {
     private final CommentRepository commentRepository;
 
 
-    public Long write(CommentSaveRequestDto dto, Long boardNo , String memberId) {
-        Member findMember = memberRepository.findByMemberId(memberId);
+    public Long write(CommentSaveRequestDto dto, Long boardNo , Member member) {
+
         Optional<Board> findBoard = boardRepository.findById(boardNo);
 
         Comment comment = Comment.builder()
                 .commentContent(dto.getCommentContent())
-                .member(findMember)
+                .member(member)
                 .board(findBoard.get())
                 .build();
 
@@ -35,18 +35,7 @@ public class CommentService {
 
     }
 
-//    public Long modify(CommentUpdateRequestDto dto, Long commentNo, String memberId, Long boardNo) {
-//
-//        Member member = memberRepository.findByMemberId(memberId);
-//        Optional<Comment> comment = commentRepository.findById(commentNo);
-//        Optional<Board> board = boardRepository.findById(boardNo);
-//
-//        if(member.getMemberId().equals(memberId)) {
-//
-//        }
-//
-//
-//    }
+
 
 
 }
