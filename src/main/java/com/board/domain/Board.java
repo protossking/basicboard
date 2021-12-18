@@ -1,11 +1,13 @@
 package com.board.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,7 +15,7 @@ import java.util.List;
 @Getter
 @Entity
 @Table(name="board")
-public class Board extends BaseTimeEntity{
+public class Board extends BaseTimeEntity implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,7 +30,7 @@ public class Board extends BaseTimeEntity{
     private String boardContent;
 
     @ManyToOne
-    @JoinColumn(name = "member_id")
+    @JoinColumn(name = "member_id", referencedColumnName = "member_id")
     private Member member;
 
 
@@ -36,6 +38,9 @@ public class Board extends BaseTimeEntity{
     @Column(name = "board_count")
     private int boardCount;
 
+    @JsonIgnore
+    @OneToMany(mappedBy = "board", fetch = FetchType.LAZY)
+    private List<Comment> list = new ArrayList<Comment>();
 
 //    @OneToMany(mappedBy = "board", cascade = CascadeType.REMOVE)
 //    List<Comment> commentList = new ArrayList<>();

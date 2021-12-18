@@ -1,14 +1,15 @@
 <template>
   <div>
-    <b-navbar toggleable="lg" fixed="top">
+    <b-navbar fixed="top">
       <div>
+        &nbsp;&nbsp;
         <router-link
-          :to="{ name: 'Notice' }"
+          :to="{ name: 'Home' }"
           style="
-            font-family: 'twayair';
+            font-family: 'Koreageulggol';
             font-size: 30pt;
             text-decoration-line: none;
-            color: white;
+            color: black;
           "
           >Home</router-link
         >
@@ -17,10 +18,10 @@
         <router-link
           :to="{ name: 'Notice' }"
           style="
-            font-family: 'twayair';
-            font-size: 17pt;
+            font-family: 'Koreageulggol';
+            font-size: 25pt;
             text-decoration-line: none;
-            color: white;
+            color: black;
           "
           >게시판</router-link
         >
@@ -28,10 +29,10 @@
         <router-link
           :to="{ name: '#' }"
           style="
-            font-family: 'twayair';
-            font-size: 17pt;
+            font-family: 'Koreageulggol';
+            font-size: 25pt;
             text-decoration-line: none;
-            color: white;
+            color: black;
           "
           >구경하기</router-link
         >
@@ -39,25 +40,25 @@
       <router-link
         :to="{ name: 'MemberLogin' }"
         style="
-          font-family: 'twayair';
-          font-size: 17pt;
+          font-family: 'Koreageulggol';
+          font-size: 25pt;
           text-decoration-line: none;
-          color: white;
+          color: blue;
         "
         >로그인</router-link
       >
-      &nbsp;
+      &nbsp;&nbsp;
       <router-link
         :to="{ name: 'MemberJoin' }"
         style="
-          font-family: 'twayair';
-          font-size: 17pt;
+          font-family: 'Koreageulggol';
+          font-size: 25pt;
           text-decoration-line: none;
-          color: white;
+          color: blue;
         "
         >회원가입</router-link
       >
-      &nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp;
     </b-navbar>
   </div>
 </template>

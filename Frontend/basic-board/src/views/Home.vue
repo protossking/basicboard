@@ -1,6 +1,8 @@
 <template>
   <div class="home">
-    <!-- <router-link :to="{name:'MemberLogin'}">로그인</router-link> -->
+  <img src="@/assets/img/rainbow.png" alt="cloud"
+  style="height:550px"
+  >
   </div>
 </template>
 
@@ -13,3 +15,11 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+  img{
+    height: 100vh; /*각 화면에 맞는 꽉 찬 사이즈로 변경*/
+  background-repeat: no-repeat;
+  background-size: cover;
+  }
+</style>

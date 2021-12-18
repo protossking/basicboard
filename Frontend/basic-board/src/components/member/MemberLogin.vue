@@ -27,11 +27,31 @@
       ></b-form-input
       ><br />
     </b-col>
-    <b-button @click="confirm"
-      ><img
-        src="https://img.icons8.com/fluency/55/000000/gift--v2.png" /></b-button
-    ><br />
-    <router-link :to="{ name: 'MemberJoin' }">회원가입</router-link>
+    <b-button
+      @click="confirm"
+      class="btn-light"
+      style="
+        font-family: 'KyoboHand';
+        font-size: 20pt;
+        text-decoration-line: none;
+        color: black;
+      "
+    >
+      로그인&nbsp;<img src="@/assets/img/redcrayon.png" style="width: 35px"
+    /></b-button>&nbsp;
+    <b-button
+      :to="{ name: 'MemberJoin' }"
+      class="btn-light"
+      style="
+        font-family: 'KyoboHand';
+        font-size: 20pt;
+        text-decoration-line: none;
+        color: black;
+      "
+      >회원가입&nbsp;<img
+        src="@/assets/img/greencrayon.png"
+        style="width: 37px"
+    /></b-button>
   </div>
 </template>
 
@@ -71,7 +91,7 @@ export default {
 
 <style>
 body {
-  background-image: url("../../assets/img/loginimg.jpg");
+  background-image: url("../../assets/img/notebook.jpg");
   height: 100vh; /*각 화면에 맞는 꽉 찬 사이즈로 변경*/
   background-repeat: no-repeat;
   background-size: cover;

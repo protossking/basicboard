@@ -1,5 +1,6 @@
 package com.board.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.ser.Serializers;
 import lombok.Builder;
 import lombok.Getter;
@@ -24,11 +25,12 @@ public class Comment extends BaseTimeEntity {
 
 
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "board_no")
     private Board board;
 
     @ManyToOne
-    @JoinColumn(name = "member_id")
+    @JoinColumn(name = "member_id", referencedColumnName = "member_id")
     private Member member;
 
 
