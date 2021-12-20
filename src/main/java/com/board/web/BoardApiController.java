@@ -35,9 +35,9 @@ public class BoardApiController {
     }
 
     @PostMapping("/api/v1/board")
-    public Long save(@RequestBody BoardSaveRequestDto dto, String memberId ) {
-
-        return service.write(dto, memberId);
+    public Long save(@RequestBody BoardSaveRequestDto dto, String memberId, @SessionAttribute(name = "LOGINMEMBER") Member member ) {
+        return service.write(dto, member.getMemberId());
+//        return service.write(dto, memberId);
 
     }
 
