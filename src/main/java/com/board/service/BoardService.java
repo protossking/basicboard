@@ -63,13 +63,9 @@ public class BoardService {
     }
 
     @Transactional
-    public void modifiedBoard(BoardUpdateRequestDto dto, String memberId, Long boardNo) {
-        Member findMember = memberRepository.findByMemberId(memberId);
-        dto.setBoardAuthorId(findMember.getMemberId());
-        Board findBoard = boardRepository.findById(boardNo).orElseThrow(() -> new IllegalArgumentException("해당 게시글이없습니다 "));
-        if (findMember.getMemberId().equals(findBoard.getMember().getMemberId())) {
-            findBoard.update(dto.getTitle(), dto.getContent());
-        }
+    public void modifiedBoard(Long boardNo, BoardUpdateParam param) {
+        Board board = boardRepository.findById(boardNo).orElseThrow(() -> new IllegalArgumentException("해당 게시글이없습니다 "));
+        board.update(param.getTitle(), param.getContent());
     }
 
     @Transactional

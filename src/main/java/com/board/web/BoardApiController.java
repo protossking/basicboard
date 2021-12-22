@@ -55,7 +55,11 @@ public class BoardApiController {
             @RequestBody BoardUpdateRequestDto request,
             @SessionAttribute(name = "LOGINMEMBER") Member member
     ) {
-        service.modifiedBoard(request, member.getMemberId(), boardNo);
+        if (!request.getBoardAuthorId().equals(member.getMemberId())) {
+            throw new RuntimeException("다른 멤버가 글을 고치려고 한다.");
+        }
+
+        service.modifiedBoard(boardNo, request.toParam());
     }
 
     @DeleteMapping("/api/v1/board/{boardNo}")

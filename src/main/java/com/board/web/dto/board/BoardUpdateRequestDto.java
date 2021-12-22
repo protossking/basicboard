@@ -1,5 +1,6 @@
 package com.board.web.dto.board;
 
+import com.board.service.BoardUpdateParam;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,5 +20,9 @@ public class BoardUpdateRequestDto {
         this.title = title;
         this.content = content;
         this.boardAuthorId = boardAuthorId;
+    }
+
+    public BoardUpdateParam toParam() {
+        return new BoardUpdateParam(title, content, boardAuthorId);
     }
 }
