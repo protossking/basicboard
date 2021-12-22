@@ -17,7 +17,7 @@ import java.util.List;
 public class Member implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "member_no")
     private Long memberNo;
 

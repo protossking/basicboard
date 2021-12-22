@@ -15,24 +15,19 @@ public class BoardSaveRequestDto {
 
     private String title;
     private String content;
-    private Member member;
 
     @Builder
-    public BoardSaveRequestDto(String title, String content, Member member) {
+    public BoardSaveRequestDto(String title, String content) {
         this.title = title;
         this.content = content;
-        this.member = member;
     }
 
 
-    public Board toEntity() {
-
+    public Board toEntity(Member member) {
         return Board.builder()
                 .boardTitle(title)
-                .member(member)
                 .boardContent(content)
+                .member(member)
                 .build();
     }
-
-
 }

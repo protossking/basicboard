@@ -1,6 +1,5 @@
 package com.board.web.dto.board;
 
-import com.board.domain.Board;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,15 +12,12 @@ public class BoardUpdateRequestDto {
 
     private String title;
     private String content;
-    private String memberId;
+    private String boardAuthorId;
 
     @Builder
-    public BoardUpdateRequestDto(String title, String content, String memberId) {
+    public BoardUpdateRequestDto(String title, String content, String boardAuthorId) {
         this.title = title;
         this.content = content;
-        this.memberId = memberId;
+        this.boardAuthorId = boardAuthorId;
     }
-
-
-
 }

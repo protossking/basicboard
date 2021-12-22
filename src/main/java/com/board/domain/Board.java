@@ -14,11 +14,11 @@ import java.util.List;
 @NoArgsConstructor
 @Getter
 @Entity
-@Table(name="board")
+@Table(name = "board")
 public class Board extends BaseTimeEntity implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "board_id")
     private Long boardId;
 
@@ -57,7 +57,4 @@ public class Board extends BaseTimeEntity implements Serializable {
         this.boardTitle = title;
         this.boardContent = content;
     }
-
-
-
 }

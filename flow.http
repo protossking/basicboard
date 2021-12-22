@@ -1,0 +1,46 @@
+### 회원가입
+POST http://localhost:8000/api/v1/member
+Content-Type: application/json
+
+{
+  "id": "progresivojs",
+  "name": "황진성",
+  "password": "123123",
+  "email": "progresivojs@gmail.com"
+}
+
+### 로그인
+POST http://localhost:8000/login
+Content-Type: application/json
+
+{
+  "loginId": "progresivojs",
+  "loginPassword": "123123"
+}
+
+### 글쓰기
+POST http://localhost:8000/api/v1/board
+Content-Type: application/json
+
+{
+  "title": "양석조 바보",
+  "content": "졸라바보",
+  "member": "1"
+}
+
+### 글 조회
+GET http://localhost:8000/api/v1/board/2
+
+
+### 글 수정
+PUT http://localhost:8000/api/v1/board/2
+Content-Type: application/json
+
+{
+  "title": "양석조 천재",
+  "content": "졸라천재",
+  "boardAuthorId": "1"
+}
+
+### 글 조회
+GET http://localhost:8000/api/v1/board/2

@@ -11,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
 @Api("Member Controller API V1")
 @RequiredArgsConstructor
 @RestController
@@ -51,7 +52,4 @@ public class MemberApiController {
     public Long save(@RequestBody MemberSaveRequestDto dto) {
         return service.save(dto);
     }
-
-
-
 }
