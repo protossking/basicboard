@@ -27,4 +27,6 @@ public class BoardListResponseDto {
         this.memberId = entity.getMember().getMemberId();
         this.list = entity.getList();
     }
+
+
 }
