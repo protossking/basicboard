@@ -1,12 +1,10 @@
 package com.board.web.dto.board;
 
 
-import com.board.domain.Board;
-import com.board.domain.Member;
+import com.board.domain.BoardEntity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Getter
@@ -25,8 +23,8 @@ public class BoardDetailResponseDto {
 
 
 
-    public BoardDetailResponseDto (Board board) {
-        this.memberId = board.getMember().getMemberId();
+    public BoardDetailResponseDto (BoardEntity board) {
+        this.memberId = board.getMemberEntity().getMemberId();
         this.boardNo = board.getBoardId();
         this.boardTitle = board.getBoardTitle();
         this.boardContent = board.getBoardContent();

@@ -1,7 +1,5 @@
 package com.board.web.dto.comment;
 
-import com.board.domain.Board;
-import com.board.domain.Member;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

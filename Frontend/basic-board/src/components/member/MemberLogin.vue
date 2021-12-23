@@ -56,7 +56,7 @@
 </template>
 
 <script>
-import { login } from "@/api/member.js";
+import { login } from "@/api/memberEntity.js";
 export default {
   name: "MemberLogin",
   data() {

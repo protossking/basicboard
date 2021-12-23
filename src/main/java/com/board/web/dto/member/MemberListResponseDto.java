@@ -1,6 +1,6 @@
 package com.board.web.dto.member;
 
-import com.board.domain.Member;
+import com.board.domain.MemberEntity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -13,7 +13,7 @@ public class MemberListResponseDto {
     private String password;
     private String email;
 
-    public MemberListResponseDto(Member entity) {
+    public MemberListResponseDto(MemberEntity entity) {
         this.id = entity.getMemberId();
         this.name = entity.getMemberName();
         this.password = entity.getMemberPassword();

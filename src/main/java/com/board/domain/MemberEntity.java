@@ -14,10 +14,10 @@ import java.util.List;
 @Getter
 @Entity
 @Table(name="member")
-public class Member implements Serializable {
+public class MemberEntity implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "member_no")
     private Long memberNo;
 
@@ -34,16 +34,12 @@ public class Member implements Serializable {
     private String memberEmail;
 
     @Builder
-    public Member(String memberId, String memberName, String memberPassword, String memberEmail) {
+    public MemberEntity(String memberId, String memberName, String memberPassword, String memberEmail) {
         this.memberId = memberId;
         this.memberName = memberName;
         this.memberPassword = memberPassword;
         this.memberEmail = memberEmail;
     }
-
-//    @OneToMany(mappedBy = "member", cascade = CascadeType.REMOVE)
-//    private List<Board> boardList = new ArrayList<>();
-
 
     public void update(String password, String email) {
         this.memberPassword = password;

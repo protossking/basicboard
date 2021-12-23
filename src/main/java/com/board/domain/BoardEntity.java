@@ -15,10 +15,10 @@ import java.util.List;
 @Getter
 @Entity
 @Table(name="board")
-public class Board extends BaseTimeEntity implements Serializable {
+public class BoardEntity extends BaseTimeEntity implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "board_id")
     private Long boardId;
 
@@ -31,7 +31,7 @@ public class Board extends BaseTimeEntity implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "member_id", referencedColumnName = "member_id")
-    private Member member;
+    private MemberEntity memberEntity;
 
 
     @ColumnDefault("0")
@@ -40,17 +40,15 @@ public class Board extends BaseTimeEntity implements Serializable {
 
     @JsonIgnore
     @OneToMany(mappedBy = "board", fetch = FetchType.LAZY)
-    private List<Comment> list = new ArrayList<Comment>();
+    private List<CommentEntity> list = new ArrayList<CommentEntity>();
 
-//    @OneToMany(mappedBy = "board", cascade = CascadeType.REMOVE)
-//    List<Comment> commentList = new ArrayList<>();
 
 
     @Builder
-    public Board(String boardTitle, String boardContent, Member member) {
+    public BoardEntity(String boardTitle, String boardContent, MemberEntity memberEntity) {
         this.boardTitle = boardTitle;
         this.boardContent = boardContent;
-        this.member = member;
+        this.memberEntity = memberEntity;
     }
 
     public void update(String title, String content) {

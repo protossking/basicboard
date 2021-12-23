@@ -1,7 +1,8 @@
 package com.board.web.dto.member;
 
 
-import com.board.domain.Member;
+import com.board.domain.MemberEntity;
+import com.board.service.param.MemberSaveParam;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -25,8 +26,8 @@ public class MemberSaveRequestDto {
         this.email = email;
     }
 
-    public Member toEntity(String encodedPassword) {
-        return Member.builder()
+    public MemberEntity toEntity(String encodedPassword) {
+        return MemberEntity.builder()
                 .memberId(id)
                 .memberName(name)
                 .memberPassword(encodedPassword)
@@ -35,4 +36,14 @@ public class MemberSaveRequestDto {
 
 
     }
+
+    public MemberSaveParam toParam() {
+        return MemberSaveParam.builder()
+                .memberId(this.id)
+                .memberName(this.name)
+                .memberPassword(this.password)
+                .memberEmail(this.email)
+                .build();
+    }
+
 }

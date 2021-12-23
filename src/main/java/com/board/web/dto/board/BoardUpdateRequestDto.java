@@ -1,6 +1,5 @@
 package com.board.web.dto.board;
 
-import com.board.domain.Board;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

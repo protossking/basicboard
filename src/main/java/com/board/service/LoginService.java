@@ -1,6 +1,6 @@
 package com.board.service;
 
-import com.board.domain.Member;
+import com.board.domain.MemberEntity;
 import com.board.domain.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -12,13 +12,13 @@ public class LoginService {
 
     private final MemberRepository memberRepository;
 
-    public Member login (String memberId, String memberPassword) {
-        Member findMember = memberRepository.findByMemberId(memberId);
+    public MemberEntity login (String memberId, String memberPassword) {
+        MemberEntity findMemberEntity = memberRepository.findByMemberId(memberId);
         BCryptPasswordEncoder encode = new BCryptPasswordEncoder();
 
-        if(encode.matches(memberPassword, findMember.getMemberPassword())) {
+        if(encode.matches(memberPassword, findMemberEntity.getMemberPassword())) {
             System.out.println("로그인 성공 ");
-            return findMember;
+            return findMemberEntity;
         }
 
 

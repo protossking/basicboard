@@ -1,8 +1,8 @@
 package com.board.web;
 
 
-import com.board.domain.Board;
-import com.board.domain.Member;
+import com.board.domain.BoardEntity;
+import com.board.domain.MemberEntity;
 import com.board.service.BoardService;
 import com.board.web.dto.board.BoardDetailResponseDto;
 import com.board.web.dto.board.BoardListResponseDto;
@@ -12,9 +12,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -34,16 +32,13 @@ public class BoardApiController {
 
     @ApiOperation(value = "게시판 목록", notes = "게시판 전체 목록을 보여준다 ")
     public List<BoardListResponseDto> listAll() {
-//        PageRequest pageRequest = PageRequest.of(0, 5);
-
         List<BoardListResponseDto> all = service.findAll();
-
         return all;
     }
 
     @PostMapping("/api/v1/board")
-    public Long save(@RequestBody BoardSaveRequestDto dto, String memberId, @SessionAttribute(name = "LOGINMEMBER") Member member ) {
-        return service.write(dto, member.getMemberId());
+    public Long save(@RequestBody BoardSaveRequestDto dto, String memberId, @SessionAttribute(name = "LOGINMEMBER") MemberEntity memberEntity) {
+        return service.write(dto, memberEntity.getMemberId());
 //        return service.write(dto, memberId);
 
     }
@@ -74,7 +69,7 @@ public class BoardApiController {
 
     @GetMapping("/api/v2/boards")
     public ResponseEntity listPaging(Pageable pageable) {
-        Page<Board> allPage = service.findAll(pageable);
+        Page<BoardEntity> allPage = service.findAll(pageable);
 
         return new ResponseEntity<>(allPage, HttpStatus.OK);
 

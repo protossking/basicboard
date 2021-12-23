@@ -1,8 +1,8 @@
 package com.board.web.dto.board;
 
 
-import com.board.domain.Board;
-import com.board.domain.Member;
+import com.board.domain.BoardEntity;
+import com.board.domain.MemberEntity;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,21 +15,21 @@ public class BoardSaveRequestDto {
 
     private String title;
     private String content;
-    private Member member;
+    private MemberEntity memberEntity;
 
     @Builder
-    public BoardSaveRequestDto(String title, String content, Member member) {
+    public BoardSaveRequestDto(String title, String content, MemberEntity memberEntity) {
         this.title = title;
         this.content = content;
-        this.member = member;
+        this.memberEntity = memberEntity;
     }
 
 
-    public Board toEntity() {
+    public BoardEntity toEntity() {
 
-        return Board.builder()
+        return BoardEntity.builder()
                 .boardTitle(title)
-                .member(member)
+                .memberEntity(memberEntity)
                 .boardContent(content)
                 .build();
     }

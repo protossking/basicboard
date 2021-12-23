@@ -1,7 +1,7 @@
 package com.board.web;
 
 
-import com.board.domain.Member;
+import com.board.domain.MemberEntity;
 import com.board.service.LoginService;
 import com.board.service.MemberService;
 import com.board.web.dto.member.MemberResponseDto;
@@ -9,10 +9,8 @@ import com.board.web.login.LoginForm;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -28,18 +26,18 @@ public class IndexController {
 
     @PostMapping("/login")
     public MemberResponseDto login(@RequestBody LoginForm loginForm, HttpServletRequest request) {
-        Member loginMember = loginService.login(loginForm.getLoginId(), loginForm.getLoginPassword());
+        MemberEntity loginMemberEntity = loginService.login(loginForm.getLoginId(), loginForm.getLoginPassword());
 
-        if(loginMember != null) {
+        if(loginMemberEntity != null) {
 
             HttpSession session = request.getSession(true);
-            session.setAttribute("LOGINMEMBER", loginMember);
+            session.setAttribute("LOGINMEMBER", loginMemberEntity);
             System.out.println("-----------------------");
-            Member loginmember =(Member)session.getAttribute("LOGINMEMBER");
+            MemberEntity loginmember =(MemberEntity)session.getAttribute("LOGINMEMBER");
 
             System.out.println(loginmember.getMemberId());
             System.out.println(session.getAttribute("LOGINMEMBER"));
-            return new MemberResponseDto(loginMember);
+            return new MemberResponseDto(loginMemberEntity);
         }
         return null;
     }
