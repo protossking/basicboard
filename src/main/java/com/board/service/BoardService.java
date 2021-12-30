@@ -8,25 +8,15 @@ import com.board.web.dto.board.BoardDetailResponseDto;
 import com.board.web.dto.board.BoardListResponseDto;
 import com.board.web.dto.board.BoardSaveRequestDto;
 import com.board.web.dto.board.BoardUpdateRequestDto;
-import io.swagger.models.Model;
-import io.swagger.models.Path;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.PathVariable;
-import springfox.documentation.swagger2.mappers.ModelMapper;
 
 import java.util.List;
-import java.util.Map;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -38,13 +28,10 @@ public class BoardService {
     private final MemberRepository memberRepository;
 
 
-
     @Transactional
     public Long write(BoardSaveRequestDto dto, String memberId) {
-
-        Member findMember = memberRepository.findByMemberId(memberId);
-        dto.setMember(findMember);
-        Board saveBoard = boardRepository.save(dto.toEntity());
+        Member member = memberRepository.findByMemberId(memberId);
+        Board saveBoard = boardRepository.save(dto.toEntity(member));
         return saveBoard.getBoardId();
     }
 
@@ -63,7 +50,7 @@ public class BoardService {
 
     @Transactional
     public void delete(Long no) {
-        Board board  =  boardRepository.findById(no).orElseThrow(() -> new IllegalArgumentException("해당 게시글이 없습니다 "));
+        Board board = boardRepository.findById(no).orElseThrow(() -> new IllegalArgumentException("해당 게시글이 없습니다 "));
         boardRepository.delete(board);
 
     }
@@ -76,16 +63,9 @@ public class BoardService {
     }
 
     @Transactional
-    public void modifiedBoard(BoardUpdateRequestDto dto, String memberId, Long boardNo) {
-
-        Member findMember = memberRepository.findByMemberId(memberId);
-        dto.setMemberId(findMember.getMemberId());
-        Board findBoard = boardRepository.findById(boardNo).orElseThrow(() -> new IllegalArgumentException("해당 게시글이없습니다 "));
-
-
-        if(findMember.getMemberId().equals(findBoard.getMember().getMemberId())) {
-            findBoard.update(dto.getTitle(), dto.getContent());
-        }
+    public void modifiedBoard(Long boardNo, BoardUpdateParam param) {
+        Board board = boardRepository.findById(boardNo).orElseThrow(() -> new IllegalArgumentException("해당 게시글이없습니다 "));
+        board.update(param.getTitle(), param.getContent());
     }
 
     @Transactional
@@ -93,7 +73,7 @@ public class BoardService {
         Member findMember = memberRepository.findByMemberId(memberId);
         Board board = boardRepository.findById(boardNo).orElseThrow(() -> new IllegalArgumentException("해당 게시글이 없습니다 "));
 
-        if(findMember.getMemberId().equals(board.getMember().getMemberId())) {
+        if (findMember.getMemberId().equals(board.getMember().getMemberId())) {
             boardRepository.delete(board);
         }
         return boardNo;
