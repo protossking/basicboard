@@ -2,40 +2,27 @@ package com.board.service;
 
 import com.board.domain.*;
 import com.board.web.dto.comment.CommentSaveRequestDto;
-import com.board.web.dto.comment.CommentUpdateRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service
 public class CommentService {
-
-    private final MemberRepository memberRepository;
     private final BoardRepository boardRepository;
     private final CommentRepository commentRepository;
 
+    public Long write(CommentSaveRequestDto dto, Long boardNo, Member member) {
 
-    public Long write(CommentSaveRequestDto dto, Long boardNo , Member member) {
+        Optional<BoardEntity> findBoard = boardRepository.findById(boardNo);
 
-        Optional<Board> findBoard = boardRepository.findById(boardNo);
-
-        Comment comment = Comment.builder()
+        CommentEntity commentEntity = CommentEntity.builder()
                 .commentContent(dto.getCommentContent())
                 .member(member)
                 .board(findBoard.get())
                 .build();
 
-        return commentRepository.save(comment).getCommentId();
-
-
+        return commentRepository.save(commentEntity).getCommentId();
     }
-
-
-
-
 }

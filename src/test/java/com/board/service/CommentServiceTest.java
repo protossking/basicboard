@@ -1,7 +1,6 @@
 package com.board.service;
 
 import com.board.domain.*;
-import org.assertj.core.api.Assertions;
 import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -9,11 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.*;
-import static org.junit.Assert.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -31,11 +28,6 @@ public class CommentServiceTest {
         commentRepository.deleteAll();
         memberRepository.deleteAll();
         boardRepository.deleteAll();
-
-
-
-
-
     }
 
     @Test
@@ -57,29 +49,29 @@ public class CommentServiceTest {
         String boardTitle = "title";
         String boardContent = "content";
         Member boardMember = member;
-        Board board = Board.builder()
+        BoardEntity boardEntity = BoardEntity.builder()
                 .boardTitle(boardTitle)
                 .boardContent(boardContent)
                 .member(member)
                 .build();
 
-        Long boardNo = boardRepository.save(board).getBoardId();
+        Long boardNo = boardRepository.save(boardEntity).getBoardId();
         String commentContent = "commentContent";
-        Comment comment = Comment.builder()
-                .board(board)
+        CommentEntity commentEntity = CommentEntity.builder()
+                .board(boardEntity)
                 .member(member)
                 .commentContent(commentContent)
                 .build();
 
-        Long commentId = commentRepository.save(comment).getCommentId();
+        Long commentId = commentRepository.save(commentEntity).getCommentId();
 
         //w
-        List<Comment> list = commentRepository.findAll();
+        List<CommentEntity> list = commentRepository.findAll();
 
-        Long commentNo = list.get(list.size()-1).getCommentId();
-        String commentContent2 = list.get(list.size()-1).getCommentContent();
-        String commentMemberName = list.get(list.size()-1).getMember().getMemberName();
-        Long commentBoardNo = list.get(list.size()-1).getBoard().getBoardId();
+        Long commentNo = list.get(list.size() - 1).getCommentId();
+        String commentContent2 = list.get(list.size() - 1).getCommentContent();
+        String commentMemberName = list.get(list.size() - 1).getMember().getMemberName();
+        Long commentBoardNo = list.get(list.size() - 1).getBoard().getBoardId();
 
 
         //t
@@ -87,7 +79,5 @@ public class CommentServiceTest {
         assertThat(commentContent).isEqualTo(commentContent2);
         assertThat(memberName).isEqualTo(commentMemberName);
         assertThat(commentBoardNo).isEqualTo(boardNo);
-
-
     }
 }

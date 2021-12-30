@@ -1,6 +1,6 @@
 package com.board.web;
 
-import com.board.domain.Comment;
+import com.board.domain.CommentEntity;
 import com.board.domain.Member;
 import com.board.service.CommentService;
 import com.board.web.dto.comment.CommentSaveRequestDto;

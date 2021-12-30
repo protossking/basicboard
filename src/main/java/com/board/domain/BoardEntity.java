@@ -15,7 +15,7 @@ import java.util.List;
 @Getter
 @Entity
 @Table(name = "board")
-public class Board extends BaseTimeEntity implements Serializable {
+public class BoardEntity extends BaseTimeEntity implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -40,14 +40,14 @@ public class Board extends BaseTimeEntity implements Serializable {
 
     @JsonIgnore
     @OneToMany(mappedBy = "board", fetch = FetchType.LAZY)
-    private List<Comment> list = new ArrayList<Comment>();
+    private List<CommentEntity> list = new ArrayList<CommentEntity>();
 
 //    @OneToMany(mappedBy = "board", cascade = CascadeType.REMOVE)
 //    List<Comment> commentList = new ArrayList<>();
 
 
     @Builder
-    public Board(String boardTitle, String boardContent, Member member) {
+    public BoardEntity(String boardTitle, String boardContent, Member member) {
         this.boardTitle = boardTitle;
         this.boardContent = boardContent;
         this.member = member;

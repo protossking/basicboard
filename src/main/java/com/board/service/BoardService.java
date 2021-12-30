@@ -1,6 +1,6 @@
 package com.board.service;
 
-import com.board.domain.Board;
+import com.board.domain.BoardEntity;
 import com.board.domain.BoardRepository;
 import com.board.domain.Member;
 import com.board.domain.MemberRepository;
@@ -31,14 +31,14 @@ public class BoardService {
     @Transactional
     public Long write(BoardSaveRequestDto dto, String memberId) {
         Member member = memberRepository.findByMemberId(memberId);
-        Board saveBoard = boardRepository.save(dto.toEntity(member));
-        return saveBoard.getBoardId();
+        BoardEntity saveBoardEntity = boardRepository.save(dto.toEntity(member));
+        return saveBoardEntity.getBoardId();
     }
 
     @Transactional
     public Long update(Long no, BoardUpdateRequestDto dto) {
-        Board board = boardRepository.findById(no).orElseThrow(() -> new IllegalArgumentException("해당 게시글 없습니다"));
-        board.update(dto.getTitle(), dto.getContent());
+        BoardEntity boardEntity = boardRepository.findById(no).orElseThrow(() -> new IllegalArgumentException("해당 게시글 없습니다"));
+        boardEntity.update(dto.getTitle(), dto.getContent());
         return no;
     }
 
@@ -50,38 +50,37 @@ public class BoardService {
 
     @Transactional
     public void delete(Long no) {
-        Board board = boardRepository.findById(no).orElseThrow(() -> new IllegalArgumentException("해당 게시글이 없습니다 "));
-        boardRepository.delete(board);
+        BoardEntity boardEntity = boardRepository.findById(no).orElseThrow(() -> new IllegalArgumentException("해당 게시글이 없습니다 "));
+        boardRepository.delete(boardEntity);
 
     }
 
     @Transactional
-    public BoardDetailResponseDto getBoard(Long boardNo) {
-
-        Board board = boardRepository.findById(boardNo).orElseThrow(() -> new IllegalArgumentException("해당 게시글번호가없음 "));
-        return new BoardDetailResponseDto(board);
+    public BoardDetail getBoard(Long boardNo) {
+        BoardEntity boardEntity = boardRepository.findById(boardNo).orElseThrow(() -> new IllegalArgumentException("해당 게시글번호가없음 "));
+        return new BoardDetail(boardEntity);
     }
 
     @Transactional
     public void modifiedBoard(Long boardNo, BoardUpdateParam param) {
-        Board board = boardRepository.findById(boardNo).orElseThrow(() -> new IllegalArgumentException("해당 게시글이없습니다 "));
-        board.update(param.getTitle(), param.getContent());
+        BoardEntity boardEntity = boardRepository.findById(boardNo).orElseThrow(() -> new IllegalArgumentException("해당 게시글이없습니다 "));
+        boardEntity.update(param.getTitle(), param.getContent());
     }
 
     @Transactional
     public Long deleteBoard(Long boardNo, String memberId) {
         Member findMember = memberRepository.findByMemberId(memberId);
-        Board board = boardRepository.findById(boardNo).orElseThrow(() -> new IllegalArgumentException("해당 게시글이 없습니다 "));
+        BoardEntity boardEntity = boardRepository.findById(boardNo).orElseThrow(() -> new IllegalArgumentException("해당 게시글이 없습니다 "));
 
-        if (findMember.getMemberId().equals(board.getMember().getMemberId())) {
-            boardRepository.delete(board);
+        if (findMember.getMemberId().equals(boardEntity.getMember().getMemberId())) {
+            boardRepository.delete(boardEntity);
         }
         return boardNo;
 
     }
 
-    public Page<Board> findAll(@PageableDefault(value = 10) Pageable pageable) {
-        Page<Board> all = boardRepository.findAll(pageable);
+    public Page<BoardEntity> findAll(@PageableDefault(value = 10) Pageable pageable) {
+        Page<BoardEntity> all = boardRepository.findAll(pageable);
         return all;
 
 

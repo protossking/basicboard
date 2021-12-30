@@ -1,7 +1,6 @@
 package com.board.web.dto.comment;
 
-import com.board.domain.Board;
-import com.board.domain.Comment;
+import com.board.domain.BoardEntity;
 import com.board.domain.Member;
 import lombok.Builder;
 import lombok.Getter;
@@ -15,21 +14,12 @@ public class CommentSaveRequestDto {
 
     private String commentContent;
     private Member member;
-    private Board board;
+    private BoardEntity boardEntity;
 
     @Builder
-    public CommentSaveRequestDto(String commentContent, Member member, Board board) {
+    public CommentSaveRequestDto(String commentContent, Member member, BoardEntity boardEntity) {
         this.commentContent = commentContent;
         this.member = member;
-        this.board = board;
-    }
-
-    public Comment toEntity() {
-        return Comment.builder()
-                .commentContent(commentContent)
-                .member(member)
-                .board(board)
-                .build();
-
+        this.boardEntity = boardEntity;
     }
 }
