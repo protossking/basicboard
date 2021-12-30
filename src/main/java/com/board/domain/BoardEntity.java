@@ -1,6 +1,7 @@
 package com.board.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,7 +12,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+@Builder
 @NoArgsConstructor
+@AllArgsConstructor
 @Getter
 @Entity
 @Table(name = "board")
@@ -41,17 +44,6 @@ public class BoardEntity extends BaseTimeEntity implements Serializable {
     @JsonIgnore
     @OneToMany(mappedBy = "board", fetch = FetchType.LAZY)
     private List<CommentEntity> list = new ArrayList<CommentEntity>();
-
-//    @OneToMany(mappedBy = "board", cascade = CascadeType.REMOVE)
-//    List<Comment> commentList = new ArrayList<>();
-
-
-    @Builder
-    public BoardEntity(String boardTitle, String boardContent, Member member) {
-        this.boardTitle = boardTitle;
-        this.boardContent = boardContent;
-        this.member = member;
-    }
 
     public void update(String title, String content) {
         this.boardTitle = title;
