@@ -1,8 +1,9 @@
 package com.board.web;
 
 
-import com.board.domain.Board;
+import com.board.domain.BoardEntity;
 import com.board.domain.Member;
+import com.board.service.BoardDetail;
 import com.board.service.BoardService;
 import com.board.web.dto.board.BoardDetailResponseDto;
 import com.board.web.dto.board.BoardListResponseDto;
@@ -45,7 +46,8 @@ public class BoardApiController {
     public BoardDetailResponseDto getBoardDetail(
             @PathVariable Long boardNo
     ) {
-        return service.getBoard(boardNo);
+        BoardDetail board = service.getBoard(boardNo);
+        return new BoardDetailResponseDto(board);
     }
 
     @PutMapping("/api/v1/board/{boardNo}")
@@ -75,7 +77,7 @@ public class BoardApiController {
 
     @GetMapping("/api/v2/boards")
     public ResponseEntity listPaging(Pageable pageable) {
-        Page<Board> allPage = service.findAll(pageable);
+        Page<BoardEntity> allPage = service.findAll(pageable);
         return new ResponseEntity<>(allPage, HttpStatus.OK);
     }
 }

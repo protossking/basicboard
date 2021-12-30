@@ -1,8 +1,7 @@
 package com.board.web.dto.board;
 
-import com.board.domain.Board;
-import com.board.domain.Comment;
-import com.board.domain.Member;
+import com.board.domain.BoardEntity;
+import com.board.domain.CommentEntity;
 import lombok.Getter;
 
 import java.time.LocalDateTime;
@@ -17,9 +16,9 @@ public class BoardListResponseDto {
     private String content;
     private LocalDateTime modifiedDate;
     private String memberId;
-    private List<Comment> list;
+    private List<CommentEntity> list;
 
-    public BoardListResponseDto(Board entity) {
+    public BoardListResponseDto(BoardEntity entity) {
         this.no = entity.getBoardId();
         this.title = entity.getBoardTitle();
         this.content = entity.getBoardContent();
