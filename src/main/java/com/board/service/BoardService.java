@@ -4,11 +4,9 @@ import com.board.domain.BoardEntity;
 import com.board.domain.BoardRepository;
 import com.board.domain.Member;
 import com.board.domain.MemberRepository;
-import com.board.web.dto.board.BoardDetailResponseDto;
 import com.board.web.dto.board.BoardListResponseDto;
 import com.board.web.dto.board.BoardSaveRequestDto;
 import com.board.web.dto.board.BoardUpdateRequestDto;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -20,12 +18,16 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-@RequiredArgsConstructor
 @Slf4j
 public class BoardService {
 
     private final BoardRepository boardRepository;
     private final MemberRepository memberRepository;
+
+    public BoardService(BoardRepository boardRepository, MemberRepository memberRepository) {
+        this.boardRepository = boardRepository;
+        this.memberRepository = memberRepository;
+    }
 
 
     @Transactional
