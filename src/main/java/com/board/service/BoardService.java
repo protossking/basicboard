@@ -52,10 +52,11 @@ public class BoardService {
     }
 
     @Transactional
-    public BoardDetailResponseDto getBoard(Long boardNo) {
+    public BoardDetail getBoard(Long boardNo) {
 
         BoardEntity board = boardRepository.findById(boardNo).orElseThrow(() -> new IllegalArgumentException("해당 게시글번호가없음 "));
-        return new BoardDetailResponseDto(board);
+
+        return new BoardDetail(board);
     }
 
     @Transactional

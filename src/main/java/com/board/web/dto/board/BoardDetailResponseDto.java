@@ -2,6 +2,7 @@ package com.board.web.dto.board;
 
 
 import com.board.domain.BoardEntity;
+import com.board.service.BoardDetail;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -16,23 +17,20 @@ public class BoardDetailResponseDto {
     private Long boardNo;
     private String boardTitle;
     private String boardContent;
-
     private LocalDateTime createdDate;
     private LocalDateTime modifiedDate;
 
 
-
-
-    public BoardDetailResponseDto (BoardEntity board) {
-        this.memberId = board.getMemberEntity().getMemberId();
-        this.boardNo = board.getBoardId();
-        this.boardTitle = board.getBoardTitle();
-        this.boardContent = board.getBoardContent();
-        this.createdDate = board.getCreatedDate();
-        this.modifiedDate = board.getModifiedDate();
-
-
-
+    public BoardDetailResponseDto(BoardDetail boardDetail) {
+        this.memberId = boardDetail.getMemberId();
+        this.boardNo = boardDetail.getBoardNo();
+        this.boardTitle = boardDetail.getBoardTitle();
+        this.boardContent = boardDetail.getBoardContent();
+        this.createdDate = boardDetail.getCreatedTime();
+        this.modifiedDate = boardDetail.getModifiedDate();
     }
+
+
+
 
 }

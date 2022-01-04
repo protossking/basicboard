@@ -3,6 +3,7 @@ package com.board.web;
 
 import com.board.domain.BoardEntity;
 import com.board.domain.MemberEntity;
+import com.board.service.BoardDetail;
 import com.board.service.BoardService;
 import com.board.web.dto.board.BoardDetailResponseDto;
 import com.board.web.dto.board.BoardListResponseDto;
@@ -19,7 +20,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.lang.reflect.Member;
+
 import java.util.List;
 
 
@@ -29,6 +30,7 @@ import java.util.List;
 public class BoardApiController {
 
     private final BoardService service;
+
 
 
     @ApiOperation(value = "게시판 목록", notes = "게시판 전체 목록을 보여준다 ")
@@ -50,9 +52,9 @@ public class BoardApiController {
 
     @GetMapping("/api/v1/board/{boardNo}")
     @ApiOperation(value = "게시판 상세보기 ", notes = "해당 게시판 숫자 보여줌 ")
-    public ResponseEntity getBoardDetail(@PathVariable Long boardNo) {
-        BoardDetailResponseDto board = service.getBoard(boardNo);
-        return new ResponseEntity(board, HttpStatus.OK);
+    public BoardDetailResponseDto getBoardDetail(@PathVariable Long boardNo) {
+        BoardDetail board= service.getBoard(boardNo);
+        return new BoardDetailResponseDto(board);
     }
 
     @ApiOperation(value = "게시판 수정", notes = "해당 게시판을 수정한다. ")
