@@ -3,6 +3,7 @@ package com.board.web.dto.board;
 
 import com.board.domain.BoardEntity;
 import com.board.domain.MemberEntity;
+import com.board.service.param.BoardSaveParam;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,24 +16,23 @@ public class BoardSaveRequestDto {
 
     private String title;
     private String content;
-    private MemberEntity memberEntity;
+
+
 
     @Builder
-    public BoardSaveRequestDto(String title, String content, MemberEntity memberEntity) {
+    public BoardSaveRequestDto(String title, String content) {
         this.title = title;
         this.content = content;
-        this.memberEntity = memberEntity;
     }
 
-
-    public BoardEntity toEntity() {
-
-        return BoardEntity.builder()
-                .boardTitle(title)
-                .memberEntity(memberEntity)
-                .boardContent(content)
+    public BoardSaveParam toParam() {
+        return BoardSaveParam.builder()
+                .title(title)
+                .content(content)
                 .build();
     }
+
+
 
 
 }
