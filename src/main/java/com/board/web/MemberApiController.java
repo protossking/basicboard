@@ -32,7 +32,6 @@ public class MemberApiController {
     @ApiOperation(value = "회원 조회", notes = "회원 한명을 조회한다. ")
     public MemberResponseDto findMember(@PathVariable Long no){
         if(service.findByNo(no).equals(null)) {
-//            throw new IllegalArgumentException("해당 번호의 회원이 없습니다");
             throw new IllegalArgumentException("해당 번호의 회원이 없습니다");
         }
         return service.findByNo(no);
